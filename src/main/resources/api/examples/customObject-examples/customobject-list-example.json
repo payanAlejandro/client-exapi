@@ -1,0 +1,12 @@
+[
+  {
+    "Id": "a0Hxx000000Xabc",
+    "Name": "Custom Object 1",
+    "CustomField": "1"
+  },
+  {
+    "Id": "a0Hxx000000Xdef",
+    "Name": "Custom Object 2",
+    "CustomField": "2"
+  }
+]

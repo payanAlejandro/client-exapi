@@ -1,0 +1,5 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "success-200",
+  "success": true, "message": "Cuenta creada correctamente"
+}

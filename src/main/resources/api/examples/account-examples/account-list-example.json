@@ -1,0 +1,12 @@
+[
+  {
+    "Id": "001xx000003Dabc",
+    "Name": "Empresa 1",
+    "AccountNumber": "A0001"
+  },
+  {
+    "Id": "001xx000003Defg",
+    "Name": "Empresa 2",
+    "AccountNumber": "A0002"
+  }
+]

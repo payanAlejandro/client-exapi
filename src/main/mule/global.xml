@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tls="http://www.mulesoft.org/schema/mule/tls"
+	xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd 
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<global-property doc:name="Global Property" doc:id="7d670f38-24d2-41cf-b1f2-0414eb57944d" name="env" value="staging" />
+	<configuration-properties doc:name="Configuration properties" doc:id="648baddb-7e2b-4eec-a3b4-589bc0559551" file="${env}.properties" />
+	<global-property doc:name="Global Property" doc:id="e05f5591-af63-40ba-aaa4-916a48c9ce0e" name="key" value="Yuwm60huhti2YXZn" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="e2b261d2-8fe5-4d5b-9eef-e0af986fec05" file="${env}.properties" key="${key}" />
+	
+	
+	<http:request-config name="HTTP_Request_PostAccounts" basePath="/api"  doc:name="HTTP Request PostAcounts">
+        <http:request-connection host="datasync-process-api.us-e2.cloudhub.io" protocol="HTTPS"/>
+    </http:request-config>
+	<http:request-config name="HTTP_Request_PostContacts" basePath="/api"  doc:name="HTTP Request PostContacts">
+        <http:request-connection host="datasync-process-api.us-e2.cloudhub.io" protocol="HTTPS"/>
+    </http:request-config>
+	<http:request-config name="HTTP_Request_PostCustomObjects" basePath="/api"  doc:name="HTTP Request PostCustomObjects">
+        <http:request-connection host="datasync-process-api.us-e2.cloudhub.io" protocol="HTTPS"/>
+    </http:request-config>
+	<http:request-config name="HTTP_Request_PostOpportunities" basePath="/api"  doc:name="HTTP Request PostOpportunities">
+        <http:request-connection host="datasync-process-api.us-e2.cloudhub.io" protocol="HTTPS"/>
+    </http:request-config>
+		
+	
+	<http:listener-config name="client-experience-api-httpListenerConfig">
+  	    <http:listener-connection host="0.0.0.0" port="${https.port}" protocol="HTTPS">
+			<tls:context >
+				<tls:key-store type="jks" path="${jks.path}" alias="${jks.alias}" keyPassword="${secure::jks.password}" password="${secure::jks.password}" />
+			</tls:context>
+		</http:listener-connection>
+    </http:listener-config>
+    
+    
+    <apikit:config name="client-experience-api-config" api="client-experience-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" >
+		<apikit:flow-mappings >
+			<apikit:flow-mapping resource="/accounts" action="post" content-type="application/json" flow-ref="post:\accounts:application\json:client-experience-api-config" />
+			<apikit:flow-mapping resource="/contacts" action="post" content-type="application/json" flow-ref="post:\contacts:application\json:client-experience-api-config" />
+			<apikit:flow-mapping resource="/customobject" action="post" content-type="application/json" flow-ref="post:\customobject:application\json:client-experience-api-config" />
+			<apikit:flow-mapping resource="/opportunities" action="post" content-type="application/json" flow-ref="post:\opportunities:application\json:client-experience-api-config" />
+		</apikit:flow-mappings>
+	</apikit:config>
+</mule>

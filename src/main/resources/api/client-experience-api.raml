@@ -1,0 +1,214 @@
+#%RAML 1.0
+title: Client Experience API
+description: API para realizar operaciones CRUD hacia API de sincronización.
+version: v1
+baseUri: https://{host}:{port}/apiClient
+
+mediaType: application/json
+
+uses:
+  types: ./types/client-types.raml
+
+/accounts:
+  get:
+    description: Obtiene todas las cuentas
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/account-examples/account-list-example.json
+
+  /{accountId}:
+    uriParameters:
+      accountId:
+        description: ID de la cuenta
+        type: string
+    get:
+      description: Obtiene detalles de una cuenta por ID
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/account-examples/account-example.json
+    put:
+      description: Modifica una cuenta existente
+      body:
+        application/json:
+          type: types.Account
+          example: !include examples/account-examples/account-example.json
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/responses-examples/success-200.json
+    delete:
+      description: Elimina una cuenta existente
+      responses:
+        204:
+          description: La cuenta fue eliminada exitosamente
+        404:
+          description: La cuenta no fue encontrada
+
+  post:
+    description: Crea una nueva cuenta
+    body:
+      application/json:
+        example: !include examples/account-examples/account-example.json
+    responses:
+      201:
+        body:
+          application/json:
+            example: !include examples/responses-examples/success-200.json
+
+/contacts:
+  get:
+    description: Obtiene todos los contactos
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/contact-examples/contact-list-example.json
+
+  /{contactId}:
+    uriParameters:
+      contactId:
+        description: ID del contacto
+        type: string
+    get:
+      description: Obtiene detalles de un contacto por ID
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/contact-examples/contact-example.json
+    put:
+      description: Modifica un contacto existente
+      body:
+        application/json:
+          type: types.Contact
+          example: !include examples/contact-examples/contact-example.json
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/responses-examples/success-200.json
+    delete:
+      description: Elimina un contacto existente
+      responses:
+        204:
+          description: El contacto fue eliminado exitosamente
+        404:
+          description: El contacto no fue encontrado
+
+  post:
+    description: Crea un nuevo contacto
+    body:
+      application/json:
+        example: !include examples/contact-examples/contact-example.json
+    responses:
+      201:
+        body:
+          application/json:
+            example: !include examples/responses-examples/success-200.json
+
+/opportunities:
+  get:
+    description: Obtiene todas las oportunidades
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/opportunities-examples/opportunity-list-example.json
+
+  /{opportunityId}:
+    uriParameters:
+      opportunityId:
+        description: ID de la oportunidad
+        type: string
+    get:
+      description: Obtiene detalles de una oportunidad por ID
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/opportunities-examples/opportunity-example.json
+    put:
+      description: Modifica una oportunidad existente
+      body:
+        application/json:
+          type: types.Opportunity
+          example: !include examples/opportunities-examples/opportunity-example.json
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/responses-examples/success-200.json
+    delete:
+      description: Elimina una oportunidad existente
+      responses:
+        204:
+          description: La oportunidad fue eliminada exitosamente
+        404:
+          description: La oportunidad no fue encontrada
+
+  post:
+    description: Crea una nueva oportunidad
+    body:
+      application/json:
+        example: !include examples/opportunities-examples/opportunity-example.json
+    responses:
+      201:
+        body:
+          application/json:
+            example: !include examples/responses-examples/success-200.json
+
+/customobject:
+  get:
+    description: Obtiene todos los objetos personalizados
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/customObject-examples/customobject-list-example.json
+
+  /{customObjectId}:
+    uriParameters:
+      customObjectId:
+        description: ID del objeto personalizado
+        type: string
+    get:
+      description: Obtiene detalles de un objeto personalizado por ID
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/customObject-examples/customobject-example.json
+    put:
+      description: Modifica un objeto personalizado existente
+      body:
+        application/json:
+          type: types.CustomObject
+          example: !include examples/customObject-examples/customobject-example.json
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/responses-examples/success-200.json
+    delete:
+      description: Elimina un objeto personalizado existente
+      responses:
+        204:
+          description: El objeto personalizado fue eliminado exitosamente
+        404:
+          description: El objeto personalizado no fue encontrado
+
+  post:
+    description: Crea un nuevo objeto personalizado
+    body:
+      application/json:
+        example: !include examples/customObject-examples/customobject-example.json
+    responses:
+      201:
+        body:
+          application/json:
+            example: !include examples/responses-examples/success-200.json

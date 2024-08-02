@@ -1,0 +1,14 @@
+[
+  {
+    "Id": "006xx000001Yabc",
+    "Name": "Opportunity 1",
+    "StageName": "Prospecting",
+    "Amount": 50000
+  },
+  {
+    "Id": "006xx000001Ydef",
+    "Name": "Opportunity 2",
+    "StageName": "Closed Won",
+    "Amount": 75000
+  }
+]
